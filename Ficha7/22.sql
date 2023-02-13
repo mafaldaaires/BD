@@ -1,0 +1,17 @@
+DELETE FROM STREAM
+WHERE 
+CustomerId NOT IN(
+    SELECT CustomerId
+    FROM CUSTOMER
+    JOIN COUNTRY ON CUSTOMER.Country = COUNTRY.Name 
+    JOIN REGION USING(RegionId)
+    WHERE REGION.Name = 'America'
+)
+AND
+MovieId IN(
+    SELECT MovieId
+    FROM MOVIE
+    NATURAL JOIN MOVIE_GENRE
+    NATURAL JOIN GENRE
+    WHERE MOVIE.Duration <= 120 AND GENRE.Label = 'Biography'
+);

@@ -1,0 +1,2 @@
+SELECT COUNT(*),COUNT(Supervisor),COUNT(DISTINCT Supervisor)
+FROM STAFF;

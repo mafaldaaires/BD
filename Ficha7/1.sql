@@ -1,0 +1,3 @@
+SELECT DepId, DEPARTMENT.Name, Manager, STAFF.Name
+FROM DEPARTMENT, STAFF
+WHERE Manager = StaffId;

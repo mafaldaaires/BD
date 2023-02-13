@@ -1,0 +1,18 @@
+UPDATE STREAM
+SET CHarge = 4.5
+WHERE
+MovieId IN(
+    SELECT MovieId
+    FROM MOVIE
+    NATURAL JOIN MOVIE_GENRE
+    NATURAL JOIN GENRE
+    WHERE GENRE.Label='Sci-Fi' AND Year < 1985
+)
+AND
+CustomerId NOT IN(
+    SELECT CustomerId
+    FROM CUSTOMER
+    JOIN COUNTRY ON (CUSTOMER.Country = COUNTRY.Name)
+    JOIN REGION USING (RegionId)
+    WHERE REGION.Name='Africa'
+);
